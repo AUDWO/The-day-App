@@ -1,7 +1,12 @@
 import React, { useEffect, useReducer, useRef } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import ListPage from "./pages/ListPage";
+import ItemPage from "./pages/ItemPage";
+import New from "./pages/New";
+import Edit from "./pages/Edit";
 import "./App.css";
-import Login from "./pages/Login";
-import { act } from "react-dom/test-utils";
+import "./recet.css";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -14,12 +19,14 @@ const reducer = (state, action) => {
       break;
     }
     case "REMOVE": {
-      newState = state.filter((it) => it.id !== action.data.id);
+      newState = state.filter((it) => it.id !== action.targetId);
       break;
     }
     case "EDIT": {
+      console.log("edit impossible");
+      console.log(action.data);
       newState = state.map((it) =>
-        it.id === action.data.id ? { ...action.data } : it
+        parseInt(it.id) === parseInt(action.data.id) ? { ...action.data } : it
       );
       break;
     }
@@ -30,6 +37,9 @@ const reducer = (state, action) => {
   localStorage.setItem("diary", JSON.stringify(newState));
   return newState;
 };
+
+export const DispatchContext = React.createContext();
+export const StateContext = React.createContext();
 
 function App() {
   const [data, dispatch] = useReducer(reducer, []);
@@ -49,14 +59,15 @@ function App() {
     }
   }, []);
 
-  const onCreate = (date, content, emotion) => {
+  const onCreate = (date, title, content, type) => {
     dispatch({
       type: "CREATE",
       data: {
         id: dataId.current,
-        date: new Date(),
+        date: new Date(date).getTime(),
+        title,
         content,
-        emotion,
+        type,
       },
     });
     dataId.current += 1;
@@ -66,21 +77,34 @@ function App() {
     dispatch({ type: "REMOVE", targetId });
   };
 
-  const onEdit = (targetId, date, content, emotion) => {
+  const onEdit = (targetId, title, content, type) => {
     dispatch({
       type: "EDIT",
       data: {
         id: targetId,
+        title,
         content,
-        date: new Date(date).getTime(),
-        emotion,
+        date: new Date().getTime(),
+        type,
       },
     });
   };
   return (
-    <div className="App">
-      <Login />
-    </div>
+    <StateContext.Provider value={data}>
+      <DispatchContext.Provider value={{ onCreate, onRemove, onEdit }}>
+        <BrowserRouter>
+          <div className="App">
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/New" element={<New />}></Route>
+              <Route path="/List" element={<ListPage />}></Route>
+              <Route path="/Item/:id" element={<ItemPage />}></Route>
+              <Route path="/Edit/:id" element={<Edit />}></Route>
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </DispatchContext.Provider>
+    </StateContext.Provider>
   );
 }
 
