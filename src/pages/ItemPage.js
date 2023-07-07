@@ -6,8 +6,6 @@ const ItemPage = () => {
   const { id } = useParams();
   const diaryList = useContext(StateContext);
   const sortedList = JSON.parse(JSON.stringify(diaryList));
-  console.log(sortedList);
-  console.log("bbb");
   const selectedItem = sortedList.find(
     (it) => parseInt(it.id) === parseInt(id)
   );

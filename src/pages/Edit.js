@@ -5,17 +5,17 @@ import AddItem from "../components/AddItem";
 const Edit = () => {
   const { id } = useParams();
   const diaryList = useContext(StateContext);
+  console.log("11111111");
+  console.dir(diaryList);
   const selectedItem = diaryList.find((it) => parseInt(it.id) === parseInt(id));
-  const a = selectedItem.title;
-  console.log("aaaaa");
-  console.log(a);
+  console.log("000000000");
+  console.log(selectedItem);
+
   const { title, content, type } = selectedItem;
   const itTitle = title;
   const itContent = content;
   const itType = type;
 
-  console.log("dwdwd");
-  console.log(title);
   return (
     <div>
       <AddItem

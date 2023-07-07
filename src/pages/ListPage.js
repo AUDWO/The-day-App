@@ -1,7 +1,5 @@
 import DiaryList from "../components/DiaryList";
 
-import "./ListPage.css";
-
 const ListPage = () => {
   return (
     <div class="ListPage">

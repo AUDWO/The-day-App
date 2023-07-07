@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import DiaryItem from "./DiaryItem";
-import { createPath } from "react-router-dom";
+import { StateContext } from "../App";
+import OptionMenu from "./OptionMenu";
 
 const sortOptionList = [
   { value: "latest", name: "최신순" },
@@ -14,28 +15,14 @@ const filterOptionList = [
   { value: "daily", name: "일상" },
 ];
 
-const OptionMenu = ({ value, onChange, optionList }) => {
-  return (
-    <select value={value} onChange={(e) => onChange(e.target.value)}>
-      {optionList.map((it, idx) => (
-        <option key={idx} value={it.value}>
-          {it.name}
-        </option>
-      ))}
-    </select>
-  );
-};
-
-const DiaryList = ({ diaryList }) => {
-  const [data, setData] = useState([]);
-
-  const [curDate, setCurDate] = useState(new Date());
+const DiaryList = () => {
+  const diaryList = useContext(StateContext);
 
   const [filter, setFilter] = useState("all");
   const [sortType, setSortType] = useState("all");
 
   const getProcessedDiaryList = () => {
-    const filterCallback = (item) => {
+    const filterCallback = (it) => {
       if (filter === "gratitude") {
         return it.type === "gratitude";
       } else if (filter === "daily") {
@@ -75,9 +62,10 @@ const DiaryList = ({ diaryList }) => {
           optionList={filterOptionList}
         />
       </div>
+      <div class="Diary-list-button"></div>
       <div class="list_wrapper">
         {getProcessedDiaryList().map((it) => (
-          <DiaryItem />
+          <DiaryItem key={it.id} {...it} version={"a"} />
         ))}
       </div>
     </div>

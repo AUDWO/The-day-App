@@ -5,17 +5,14 @@ import Button from "./Button";
 
 const RemoveItem = ({ id }) => {
   const { onRemove } = useContext(DispatchContext);
-  console.log(id);
+
+  const handleRemove = () => {
+    onRemove(id);
+  };
 
   return (
     <div>
-      <div></div>
-      <Button
-        text={"삭제하기"}
-        onClick={() => {
-          onRemove(id);
-        }}
-      />
+      <Button class={"Delete"} text={"삭제하기"} onClick={handleRemove} />
     </div>
   );
 };

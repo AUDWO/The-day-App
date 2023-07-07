@@ -1,6 +1,6 @@
-const profile = () => {
+const Profile = () => {
   return (
-    <div>
+    <div class="profile">
       <div>이미지</div>
       <div>
         <span>이름</span>
@@ -9,4 +9,4 @@ const profile = () => {
   );
 };
 
-export default profile;
+export default Profile;

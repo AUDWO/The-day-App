@@ -6,7 +6,6 @@ import ItemPage from "./pages/ItemPage";
 import New from "./pages/New";
 import Edit from "./pages/Edit";
 import "./App.css";
-import "./recet.css";
 
 const reducer = (state, action) => {
   let newState = [];

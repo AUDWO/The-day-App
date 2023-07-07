@@ -1,38 +1,155 @@
+@import url("https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap");
+body {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+}
+
+/* 일기장 컨테이너 스타일 */
 .App {
-  text-align: center;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #fff;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Home .Navigate {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+/* 일기 리스트 스타일 */
+.DiaryList {
+  margin: 0 auto;
+  width: 95%;
+  margin-bottom: 20px;
+}
+.Navigate {
+  width: 100%;
+  background-color: #44c279;
+}
+.Navigate-items {
+  display: flex;
+}
+.Navigate h1 {
+  font-family: "Rowdies";
+  font-weight: 700;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* 일기 리스트 제목 스타일 */
+.DiaryList h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* 옵션 래퍼 스타일 */
+.option_wrapper {
+  margin-bottom: 10px;
+}
+
+/* 셀렉트 박스 스타일 */
+.option_wrapper select {
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.DiaryList .list_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+/* 일기 아이템 스타일 */
+.DiaryItem {
+  width: 300px;
+  height: 380px;
+  margin-left: 17px;
+  margin-right: 17px;
+  margin-bottom: 80px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.DiaryItem:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
+.DiaryItem .Thumbnail {
+  width: 100%;
+  height: 50%;
+  border-radius: solid 1px black;
+}
+
+/* 일기 날짜 스타일 */
+.diaryDate {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* 일기 타입 스타일 */
+.diaryType {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+/* 일기 제목 스타일 */
+.diaryTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* 더보기 버튼 스타일 */
+.DiaryItem button {
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* 다른 사람 일기 보기 버튼 스타일 */
+button:nth-of-type(1) {
+  margin-right: 10px;
+}
+
+/* 새 일기쓰기 버튼 스타일 */
+button:nth-of-type(2) {
+  background-color: #555;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* 일기장 헤더 스타일 */
+
+/*
+h2 {
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #555;
+}
+*/
+
+/* 일기 타입 이미지 스타일 */
+.diaryTypeImg_wrapper {
+  width: 30px;
+  height: 30px;
+  background-color: #ccc;
+  margin-bottom: 5px;
 }

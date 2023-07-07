@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import React, { useRef } from "react";
 import { DispatchContext } from "../App";
 import { getStringDate } from "../util/date";
@@ -6,33 +7,45 @@ import OptionMenu from "./OptionMenu";
 import Button from "./Button";
 
 const filterOptionList = [
-  { value: "all", name: "전부" },
   { value: "gratitude", name: "감사" },
   { value: "introspection", name: "성찰" },
   { value: "daily", name: "일상" },
 ];
 
-const AddItem = () => {
+const AddItem = ({ id, itTitle, itDate, itContent, itType }) => {
   const contentRef = useRef();
+  const navigate = useNavigate();
 
-  const { onCreate, onEdit, onRemove } = useContext(DispatchContext);
+  const { onCreate, onEdit } = useContext(DispatchContext);
 
-  const handleSubmit = () => {
+  const handleCreate = () => {
     if (content.length < 1) {
       contentRef.current.focus();
       return;
     }
-    onCreate(date, title, type, content);
+    onCreate(date, title, content, type);
+    navigate("/");
   };
 
-  const [title, setTitle] = useState("");
-  const [date, setDate] = useState(getStringDate(new Date()));
-  const [content, setContent] = useState("");
-  const [type, setType] = useState("");
+  const handleEdit = () => {
+    if (content.length < 1) {
+      contentRef.current.focus();
+      return;
+    }
+
+    onEdit(id, title, content, type);
+    navigate("/");
+  };
+
+  const [title, setTitle] = useState(itTitle ? itTitle : "");
+  const [date, setDate] = useState(getStringDate(itDate ? itDate : new Date()));
+  const [content, setContent] = useState(itContent ? itContent : "");
+  const [type, setType] = useState(itType ? itType : "gratitude");
+
   return (
     <div class="AddItem">
       <section>
-        <h2>what's thr date today?</h2>
+        <h2>what's the date today?</h2>
         <input
           class="inpu-date"
           value={date}
@@ -52,18 +65,25 @@ const AddItem = () => {
       </section>
       <section>
         <h4>title</h4>
-        <input value={title} onChange={(e) => setTitle(e.target.value)} />
+        <input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="제목"
+        />
       </section>
       <section>
         <h4>content</h4>
         <textarea
-          placeholder="뭐라도 좀 적아봐"
+          placeholder="당신의 이야기를 들려주세요"
           value={content}
           ref={contentRef}
           onChange={(e) => setContent(e.target.value)}
         />
       </section>
-      <Button text={"새 일기쓰기"} onClick={handleSubmit} />
+      <Button
+        text={itTitle ? "수정하기" : "새 일기쓰기"}
+        onClick={itTitle ? handleEdit : handleCreate}
+      />
     </div>
   );
 };
