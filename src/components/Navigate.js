@@ -6,9 +6,14 @@ const Navigate = () => {
   const navigate = useNavigate();
 
   return (
-    <div class="Navigate">
-      <h1>THE-Diary</h1>
-      <div class="Navigate-items">
+    <div className="Navigate">
+      <div className="Navigate-header-text">
+        <span className="text-t">T</span>
+        <span className="text-h">H</span>
+        <span className="text-e">E</span>
+        <span className="texts">-Diary</span>
+      </div>
+      <div className="Navigate-items">
         <Button
           text={"다른사람 일기 보기"}
           onClick={() => console.log("hello")}

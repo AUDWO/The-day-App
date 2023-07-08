@@ -2,7 +2,7 @@ import AddItem from "../components/AddItem";
 
 const New = () => {
   return (
-    <div class="New">
+    <div className="New">
       <h3>Add your story</h3>
       <AddItem />
     </div>

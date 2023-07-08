@@ -34,7 +34,7 @@ const Home = ({ diaryList }) => {
   }, [diaryList, curDate]);*/
 
   return (
-    <div class="Home">
+    <div className="Home">
       <Navigate />
       <DiaryList />
     </div>

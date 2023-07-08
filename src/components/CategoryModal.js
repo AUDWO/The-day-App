@@ -9,7 +9,7 @@ const CategoryModal = ({ id }) => {
     navigate(`/Edit/${id}`);
   };
   return (
-    <div class="CategoryModal">
+    <div className="CategoryModal">
       <RemoveItem id={id} />
       <Button onClick={goDeTailEdit} text={"수정하기"} className={"edit"} />
     </div>

@@ -12,7 +12,7 @@ const RemoveItem = ({ id }) => {
 
   return (
     <div>
-      <Button class={"Delete"} text={"삭제하기"} onClick={handleRemove} />
+      <Button className={"delete"} text={"삭제하기"} onClick={handleRemove} />
     </div>
   );
 };

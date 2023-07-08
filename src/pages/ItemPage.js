@@ -12,7 +12,7 @@ const ItemPage = () => {
   console.log(selectedItem);
 
   return (
-    <div class="ItemPage">
+    <div className="ItemPage">
       <h3>Item-Page</h3>
       <DiaryItem {...selectedItem} version={"b"} />
     </div>

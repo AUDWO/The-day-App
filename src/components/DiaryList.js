@@ -48,9 +48,8 @@ const DiaryList = () => {
     return sortedList;
   };
   return (
-    <div class="DiaryList">
-      <h1>Day Diary List</h1>
-      <div class="option_wrapper">
+    <div className="DiaryList">
+      <div className="option_wrapper">
         <OptionMenu
           value={sortType}
           onChange={setSortType}
@@ -62,8 +61,8 @@ const DiaryList = () => {
           optionList={filterOptionList}
         />
       </div>
-      <div class="Diary-list-button"></div>
-      <div class="list_wrapper">
+      <div className="Diary-list-button"></div>
+      <div className="list_wrapper">
         {getProcessedDiaryList().map((it) => (
           <DiaryItem key={it.id} {...it} version={"a"} />
         ))}
