@@ -6,7 +6,8 @@ import Button from "./Button";
 const RemoveItem = ({ id }) => {
   const { onRemove } = useContext(DispatchContext);
 
-  const handleRemove = () => {
+  const handleRemove = (e) => {
+    e.stopPropagation();
     onRemove(id);
   };
 

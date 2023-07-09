@@ -47,7 +47,7 @@ const AddItem = ({ id, itTitle, itDate, itContent, itType }) => {
       <section>
         <h2>what's the date today?</h2>
         <input
-          class="inpu-date"
+          className="inpu-date"
           value={date}
           onChange={(e) => {
             setDate(e.target.value);

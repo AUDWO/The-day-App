@@ -41,7 +41,7 @@ body {
   height: 100px;
 
   background-color: rgba(255, 255, 255, 0.5);
-  background-color: rgba(249, 250, 251, 0.5);
+
   backdrop-filter: blur(5px);
   z-index: 2;
 }
@@ -60,13 +60,13 @@ body {
   font-weight: 700;
 }
 .text-t {
-  color: #fd565f;
+  color: #015273;
 }
 .text-h {
-  color: #eff357;
+  color: #767676;
 }
 .text-e {
-  color: #575ff3;
+  color: #00b1ff;
 }
 .texts {
   color: black;

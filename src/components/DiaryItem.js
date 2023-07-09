@@ -13,6 +13,7 @@ const DiaryItem = ({ id, title, content, type, date, version }) => {
   const [ver, setVer] = useState(version === "a" ? false : true);
   const [isOpen, setIsOpen] = useState(initalValue);
   const ref = useRef(null);
+  const ref2 = useRef(null);
 
   const goDetailItem = () => {
     navigate(`/Item/${id}`);
@@ -24,18 +25,23 @@ const DiaryItem = ({ id, title, content, type, date, version }) => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
+    if (isOpen) {
+      const handleClick = (e) => {
+        if (
+          !ref.current.contains(e.target) &&
+          ref2.current &&
+          !ref2.current.contains(e.target)
+        ) {
+          setIsOpen(!isOpen);
+        }
+      };
 
-    document.addEventListener("click", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
+      document.addEventListener("click", handleClick);
+      return () => {
+        document.removeEventListener("click", handleClick);
+      };
+    }
+  }, [isOpen]);
 
   return (
     <div className="DiaryItem" onClick={goDetailItem}>
@@ -45,7 +51,7 @@ const DiaryItem = ({ id, title, content, type, date, version }) => {
         onClick={goDetailItem2}
         ref={ref}
       />
-      {isOpen && <CategoryModal id={id} />}
+      {isOpen && <CategoryModal id={id} ref={ref2} />}
       <div className="diaryDate">{toDate}</div>
       <div className="diaryTypeImg_wrapper"></div>
       <div className="diaryType">{type}</div>

@@ -8,9 +8,9 @@ const Navigate = () => {
   return (
     <div className="Navigate">
       <div className="Navigate-header-text">
-        <span className="text-t">T</span>
-        <span className="text-h">H</span>
-        <span className="text-e">E</span>
+        <span className="text-t">G</span>
+        <span className="text-h">I</span>
+        <span className="text-e">D</span>
         <span className="texts">-Diary</span>
       </div>
       <div className="Navigate-items">
