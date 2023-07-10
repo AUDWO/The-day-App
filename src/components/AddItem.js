@@ -5,12 +5,21 @@ import { DispatchContext } from "../App";
 import { getStringDate } from "../util/date";
 import OptionMenu from "./OptionMenu";
 import Button from "./Button";
+import { PiHandsPrayingBold } from "react-icons/pi";
+import { BsEmojiSunglasses } from "react-icons/bs";
+import { GiTwoShadows } from "react-icons/gi";
 
 const filterOptionList = [
   { value: "gratitude", name: "감사" },
   { value: "introspection", name: "성찰" },
   { value: "daily", name: "일상" },
 ];
+
+const typeIcons = {
+  gratitude: <PiHandsPrayingBold />,
+  daily: <BsEmojiSunglasses />,
+  introspection: <GiTwoShadows />,
+};
 
 const AddItem = ({ id, itTitle, itDate, itContent, itType }) => {
   const contentRef = useRef();
@@ -33,7 +42,7 @@ const AddItem = ({ id, itTitle, itDate, itContent, itType }) => {
       return;
     }
 
-    onEdit(id, title, content, type);
+    onEdit(id, title, content, date, type);
     navigate("/");
   };
 
@@ -41,49 +50,75 @@ const AddItem = ({ id, itTitle, itDate, itContent, itType }) => {
   const [date, setDate] = useState(getStringDate(itDate ? itDate : new Date()));
   const [content, setContent] = useState(itContent ? itContent : "");
   const [type, setType] = useState(itType ? itType : "gratitude");
+  const [imageSrc, setImageSrc] = useState(null);
+
+  const onUpload = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    return new Promise((resolve) => {
+      reader.onload = () => {
+        setImageSrc(reader.result || null); // 파일의 컨텐츠
+        resolve();
+      };
+    });
+  };
 
   return (
     <div class="AddItem">
-      <section>
-        <h2>what's the date today?</h2>
-        <input
-          className="inpu-date"
-          value={date}
-          onChange={(e) => {
-            setDate(e.target.value);
-          }}
-          type="date"
+      <section className="title-img-wrapper">
+        <section className="section-title">
+          <input
+            className="input-title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="제목을 입력하세요"
+          />
+        </section>
+        <section className="section-img">
+          <label for="file">
+            <div className="setImg-button">파일 선택하기</div>
+          </label>
+          <img src={imageSrc} placeholder="이미지 미리보기" />
+          <input
+            className="input-img"
+            accept="image/"
+            type="file"
+            name="file"
+            id="file"
+            onChange={(e) => onUpload(e)}
+          />
+        </section>
+      </section>
+      <section className="type-content-wrapper">
+        <section className="section-type">
+          <div>
+            <div>Select Type</div>
+            {typeIcons[type]}
+          </div>
+          <OptionMenu
+            className={"option-type"}
+            value={type}
+            onChange={setType}
+            optionList={filterOptionList}
+          />
+        </section>
+        <section className="section-content">
+          <div>Content</div>
+          <textarea
+            className="input-content"
+            placeholder="당신의 이야기를 들려주세요..."
+            value={content}
+            ref={contentRef}
+            onChange={(e) => setContent(e.target.value)}
+          />
+        </section>
+        <Button
+          text={itTitle ? "수정하기" : "새 일기쓰기"}
+          onClick={itTitle ? handleEdit : handleCreate}
         />
       </section>
-      <section>
-        <h4>Select Type</h4>
-        <OptionMenu
-          value={type}
-          onChange={setType}
-          optionList={filterOptionList}
-        />
-      </section>
-      <section>
-        <h4>title</h4>
-        <input
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="제목"
-        />
-      </section>
-      <section>
-        <h4>content</h4>
-        <textarea
-          placeholder="당신의 이야기를 들려주세요"
-          value={content}
-          ref={contentRef}
-          onChange={(e) => setContent(e.target.value)}
-        />
-      </section>
-      <Button
-        text={itTitle ? "수정하기" : "새 일기쓰기"}
-        onClick={itTitle ? handleEdit : handleCreate}
-      />
     </div>
   );
 };

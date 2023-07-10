@@ -5,6 +5,15 @@ import Button from "./Button";
 import Thumbnail from "./Thumbnail";
 import CategoryModal from "./CategoryModal";
 import { BiDotsVerticalRounded } from "react-icons/bi";
+import { PiHandsPrayingBold } from "react-icons/pi";
+import { BsEmojiSunglasses } from "react-icons/bs";
+import { GiTwoShadows } from "react-icons/gi";
+
+const typeIcons = {
+  gratitude: <PiHandsPrayingBold />,
+  daily: <BsEmojiSunglasses />,
+  introspection: <GiTwoShadows />,
+};
 
 const DiaryItem = ({ id, title, content, type, date, version }) => {
   const initalValue = false;
@@ -12,8 +21,8 @@ const DiaryItem = ({ id, title, content, type, date, version }) => {
   const toDate = new Date(date).toLocaleDateString();
   const [ver, setVer] = useState(version === "a" ? false : true);
   const [isOpen, setIsOpen] = useState(initalValue);
-  const ref = useRef(null);
-  const ref2 = useRef(null);
+  const areaRef = useRef(null);
+  const areaRef2 = useRef(null);
 
   const goDetailItem = () => {
     navigate(`/Item/${id}`);
@@ -28,10 +37,10 @@ const DiaryItem = ({ id, title, content, type, date, version }) => {
     if (isOpen) {
       const handleClick = (e) => {
         if (
-          !ref.current.contains(e.target) &&
-          ref2.current &&
-          !ref2.current.contains(e.target)
+          !areaRef.current.contains(e.target) &&
+          !areaRef2.current.contains(e.target)
         ) {
+          console.log(e.target);
           setIsOpen(!isOpen);
         }
       };
@@ -44,17 +53,17 @@ const DiaryItem = ({ id, title, content, type, date, version }) => {
   }, [isOpen]);
 
   return (
-    <div className="DiaryItem" onClick={goDetailItem}>
+    <div className="DiaryItem " onClick={goDetailItem}>
       <Thumbnail />
-      <BiDotsVerticalRounded
-        className="category-button"
-        onClick={goDetailItem2}
-        ref={ref}
-      />
-      {isOpen && <CategoryModal id={id} ref={ref2} />}
+      <div className="category-dots" ref={areaRef}>
+        <BiDotsVerticalRounded
+          className="category-button"
+          onClick={goDetailItem2}
+        />
+      </div>
+      {isOpen && <CategoryModal id={id} ref2={areaRef2} />}
       <div className="diaryDate">{toDate}</div>
-      <div className="diaryTypeImg_wrapper"></div>
-      <div className="diaryType">{type}</div>
+      <div className="diaryType">{typeIcons[type]}</div>
       <div className="diaryTitle">{title}</div>
       {ver && <div class="diaryContent">{content}</div>}
       {!ver && (

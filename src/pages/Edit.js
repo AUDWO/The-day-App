@@ -11,10 +11,11 @@ const Edit = () => {
   console.log("000000000");
   console.log(selectedItem);
 
-  const { title, content, type } = selectedItem;
+  const { title, content, type, date } = selectedItem;
   const itTitle = title;
   const itContent = content;
   const itType = type;
+  const itDate = new Date(date);
 
   return (
     <div>
@@ -23,6 +24,7 @@ const Edit = () => {
         itContent={itContent}
         itType={itType}
         id={id}
+        itDate={itDate}
       />
     </div>
   );

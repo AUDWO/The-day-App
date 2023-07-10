@@ -19,7 +19,7 @@ const DiaryList = () => {
   const diaryList = useContext(StateContext);
 
   const [filter, setFilter] = useState("all");
-  const [sortType, setSortType] = useState("all");
+  const [sortType, setSortType] = useState("latest");
 
   const getProcessedDiaryList = () => {
     const filterCallback = (it) => {
@@ -45,17 +45,20 @@ const DiaryList = () => {
       filter === "all" ? copyList : copyList.filter((it) => filterCallback(it));
 
     const sortedList = filteredList.sort(compare);
+    console.log(sortedList);
     return sortedList;
   };
   return (
     <div className="DiaryList">
       <div className="option_wrapper">
         <OptionMenu
+          className={"optionMenu-sort-type"}
           value={sortType}
           onChange={setSortType}
           optionList={sortOptionList}
         />
         <OptionMenu
+          className={"optionMenu-filter-type"}
           value={filter}
           onChange={setFilter}
           optionList={filterOptionList}

@@ -6,7 +6,6 @@ import ItemPage from "./pages/ItemPage";
 import New from "./pages/New";
 import Edit from "./pages/Edit";
 import "./App.css";
-import App2 from "./App2";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -77,14 +76,14 @@ function App() {
     dispatch({ type: "REMOVE", targetId });
   };
 
-  const onEdit = (targetId, title, content, type) => {
+  const onEdit = (targetId, title, content, date, type) => {
     dispatch({
       type: "EDIT",
       data: {
         id: targetId,
         title,
         content,
-        date: new Date().getTime(),
+        date: date,
         type,
       },
     });
@@ -100,7 +99,6 @@ function App() {
               <Route path="/List" element={<ListPage />}></Route>
               <Route path="/Item/:id" element={<ItemPage />}></Route>
               <Route path="/Edit/:id" element={<Edit />}></Route>
-              <Route path="/aa" element={<App2 />}></Route>
             </Routes>
           </div>
         </BrowserRouter>
