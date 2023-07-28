@@ -21,9 +21,11 @@ const typeIcons = {
   introspection: <GiTwoShadows />,
 };
 
-const AddItem = ({ id, itTitle, itDate, itContent, itType }) => {
+const AddItem = ({ id, itImageSrc, itTitle, itDate, itContent, itType }) => {
   const contentRef = useRef();
   const navigate = useNavigate();
+
+  const dateItDate = new Date(itDate);
 
   const { onCreate, onEdit } = useContext(DispatchContext);
 
@@ -32,7 +34,7 @@ const AddItem = ({ id, itTitle, itDate, itContent, itType }) => {
       contentRef.current.focus();
       return;
     }
-    onCreate(date, title, content, type);
+    onCreate(imageSrc, date, title, content, type);
     navigate("/");
   };
 
@@ -42,15 +44,17 @@ const AddItem = ({ id, itTitle, itDate, itContent, itType }) => {
       return;
     }
 
-    onEdit(id, title, content, date, type);
+    onEdit(id, imageSrc, title, content, date, type);
     navigate("/");
   };
 
   const [title, setTitle] = useState(itTitle ? itTitle : "");
-  const [date, setDate] = useState(getStringDate(itDate ? itDate : new Date()));
+  const [date, setDate] = useState(
+    dateItDate.getTime() ? dateItDate.getTime() : getStringDate(new Date())
+  );
   const [content, setContent] = useState(itContent ? itContent : "");
   const [type, setType] = useState(itType ? itType : "gratitude");
-  const [imageSrc, setImageSrc] = useState(null);
+  const [imageSrc, setImageSrc] = useState(itImageSrc ? itImageSrc : null);
 
   const onUpload = (e) => {
     const file = e.target.files[0];
@@ -66,7 +70,7 @@ const AddItem = ({ id, itTitle, itDate, itContent, itType }) => {
   };
 
   return (
-    <div class="AddItem">
+    <div className="AddItem">
       <section className="title-img-wrapper">
         <section className="section-title">
           <input
@@ -80,7 +84,16 @@ const AddItem = ({ id, itTitle, itDate, itContent, itType }) => {
           <label for="file">
             <div className="setImg-button">파일 선택하기</div>
           </label>
-          <img src={imageSrc} placeholder="이미지 미리보기" />
+          {!imageSrc && <div className="fake-div"></div>}
+          {imageSrc && (
+            <img
+              alt="이미지"
+              className="thumbnail-img"
+              src={imageSrc}
+              placeholder="이미지 미리보기"
+            />
+          )}
+
           <input
             className="input-img"
             accept="image/"
@@ -89,6 +102,14 @@ const AddItem = ({ id, itTitle, itDate, itContent, itType }) => {
             id="file"
             onChange={(e) => onUpload(e)}
           />
+          <button
+            className="removeImg-button"
+            onClick={() => {
+              setImageSrc(null);
+            }}
+          >
+            삭제하기
+          </button>
         </section>
       </section>
       <section className="type-content-wrapper">

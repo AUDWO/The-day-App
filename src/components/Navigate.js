@@ -15,12 +15,17 @@ const Navigate = () => {
       </div>
       <div className="Navigate-items">
         <Button
-          text={"다른사람 일기 보기"}
+          className={"show-other"}
+          text={"Other"}
           onClick={() => console.log("hello")}
         />
-        <Button text={"새 일기쓰기"} onClick={() => navigate(`/New`)} />
+        <Button
+          className={"create-diaryItem"}
+          text={"New"}
+          onClick={() => navigate(`/New`)}
+        />
 
-        <Profile />
+        <Profile className={"profile"} />
       </div>
     </div>
   );

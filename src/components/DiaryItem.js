@@ -15,7 +15,7 @@ const typeIcons = {
   introspection: <GiTwoShadows />,
 };
 
-const DiaryItem = ({ id, title, content, type, date, version }) => {
+const DiaryItem = ({ id, imageSrc, title, content, type, date, version }) => {
   const initalValue = false;
   const navigate = useNavigate();
   const toDate = new Date(date).toLocaleDateString();
@@ -54,7 +54,7 @@ const DiaryItem = ({ id, title, content, type, date, version }) => {
 
   return (
     <div className="DiaryItem " onClick={goDetailItem}>
-      <Thumbnail />
+      <Thumbnail imageSrc={imageSrc} />
       <div className="category-dots" ref={areaRef}>
         <BiDotsVerticalRounded
           className="category-button"

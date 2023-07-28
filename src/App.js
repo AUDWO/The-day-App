@@ -58,11 +58,12 @@ function App() {
     }
   }, []);
 
-  const onCreate = (date, title, content, type) => {
+  const onCreate = (imageSrc, date, title, content, type) => {
     dispatch({
       type: "CREATE",
       data: {
         id: dataId.current,
+        imageSrc,
         date: new Date(date).getTime(),
         title,
         content,
@@ -76,11 +77,12 @@ function App() {
     dispatch({ type: "REMOVE", targetId });
   };
 
-  const onEdit = (targetId, title, content, date, type) => {
+  const onEdit = (targetId, imageSrc, title, content, date, type) => {
     dispatch({
       type: "EDIT",
       data: {
         id: targetId,
+        imageSrc,
         title,
         content,
         date: date,

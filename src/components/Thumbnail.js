@@ -1,4 +1,8 @@
-const Thumbnail = () => {
-  return <div className="Thumbnail">이미지</div>;
+const Thumbnail = ({ imageSrc }) => {
+  return (
+    <div className="Thumbnail">
+      <img src={imageSrc} />
+    </div>
+  );
 };
 export default Thumbnail;

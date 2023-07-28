@@ -51,6 +51,9 @@ body {
 
 .Navigate-items {
   display: flex;
+  width: 400px;
+  margin-right: 40px;
+  justify-content: space-around;
 }
 .Navigate-header-text {
   margin-left: 20px;
@@ -75,6 +78,45 @@ body {
   color: black;
 }
 
+.Navigate-items .Button-create-diaryItem {
+  width: 120px;
+
+  font-size: 30px;
+  font-weight: 700;
+  font-family: "Shadows Into Light", cursive;
+  border-radius: 12px;
+  border: none;
+}
+.Navigate-items .Button-create-diaryItem:hover {
+  cursor: pointer;
+  color: #00b1ff;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+}
+.Navigate-items .Button-show-other {
+  width: 120px;
+
+  font-size: 30px;
+  font-weight: 700;
+  font-family: "Shadows Into Light", cursive;
+  border-radius: 12px;
+  border: none;
+}
+.Navigate-items .Button-show-other:hover {
+  cursor: pointer;
+  color: #015273;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+}
+.Profile {
+  display: flex;
+}
+.Profile .profile-img {
+}
+.Profile .profile-img .basic-profile-image {
+  width: 50px;
+  height: 50px;
+  font-weight: 400;
+  border-radius: 50%;
+}
 /* 옵션 래퍼 스타일 */
 .option_wrapper {
   margin-top: 10px;
@@ -144,6 +186,12 @@ body {
   width: 100%;
   height: 50%;
 
+  border-radius: solid 1px black;
+}
+.DiaryItem .Thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: solid 1px black;
 }
 
@@ -220,19 +268,6 @@ body {
   cursor: pointer;
 }*/
 
-/* 다른 사람 일기 보기 버튼 스타일 */
-button:nth-of-type(1) {
-  margin-right: 10px;
-}
-
-/* 새 일기쓰기 버튼 스타일 */
-button:nth-of-type(2) {
-  background-color: #555;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
 /* 일기장 헤더 스타일 */
 
 /*
@@ -269,6 +304,7 @@ h2 {
 
 .AddItem .section-title .input-title {
   font-size: 50px;
+  font-weight: 600;
   border: none;
   outline: none;
   width: 600px;
@@ -305,7 +341,32 @@ h2 {
   background-color: #858e96;
   color: white;
 }
+.AddItem .section-img .removeImg-button {
+  width: 120px;
+  height: 40px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #858e96;
+  background-color: white;
+  line-height: 40px;
+  text-align: center;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+}
+.AddItem .section-img .removeImg-button:hover {
+  cursor: pointer;
+  background-color: #858e96;
+  color: white;
+}
+
 .AddItem .section-img img {
+  width: 500px;
+  height: 250px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+}
+.AddItem .section-img .fake-div {
   width: 500px;
   height: 250px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
@@ -313,6 +374,7 @@ h2 {
 .AddItem .section-type div {
   font-size: 30px;
   font-weight: 700;
+  color: #858e96;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -334,6 +396,7 @@ h2 {
   margin-bottom: 20px;
   font-size: 30px;
   font-weight: 700;
+  color: #858e96;
   margin-left: 20px;
 }
 .AddItem textarea {
@@ -349,4 +412,52 @@ h2 {
 
 .AddItem textarea::placeholder {
   color: #858e96;
+}
+
+.ItemPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ItemPage .DiaryItem {
+  width: 700px;
+  height: auto;
+}
+
+.ItemPage .Thumbnail {
+  width: 700px;
+  height: 400px;
+}
+.ItemPage .Thumbnail img {
+  width: 100%;
+  height: 100%;
+}
+
+.ItemPage .diaryDate {
+  margin-top: 20px;
+  font-size: 28px;
+}
+
+.ItemPage .diaryType {
+  margin-top: 20px;
+  font-size: 30px;
+}
+
+.ItemPage .diaryTitle {
+  font-size: 35px;
+  margin-top: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+}
+
+.ItemPage .diaryContent {
+  font-size: 20px;
+  padding: 20px;
+  line-height: 1.8;
+}
+
+.ItemPage .DiaryItem:hover {
+  cursor: pointer;
+  transform: scale(1);
 }

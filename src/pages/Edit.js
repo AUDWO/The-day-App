@@ -11,7 +11,8 @@ const Edit = () => {
   console.log("000000000");
   console.log(selectedItem);
 
-  const { title, content, type, date } = selectedItem;
+  const { imageSrc, title, content, type, date } = selectedItem;
+  const itImageSrc = imageSrc;
   const itTitle = title;
   const itContent = content;
   const itType = type;
@@ -21,6 +22,7 @@ const Edit = () => {
     <div>
       <AddItem
         itTitle={itTitle}
+        itImageSrc={itImageSrc}
         itContent={itContent}
         itType={itType}
         id={id}

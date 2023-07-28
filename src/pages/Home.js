@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import DiaryList from "../components/DiaryList";
-import Button from "../components/Button";
+
 import Navigate from "../components/Navigate";
 
 const Home = ({ diaryList }) => {
