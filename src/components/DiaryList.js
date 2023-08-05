@@ -65,10 +65,14 @@ const DiaryList = () => {
         />
       </div>
       <div className="Diary-list-button"></div>
-      <div className="list_wrapper">
-        {getProcessedDiaryList().map((it) => (
-          <DiaryItem key={it.id} {...it} version={"a"} />
-        ))}
+      <div className="vzvz">
+        <div className="list_section">
+          <div className="list_wrapper">
+            {getProcessedDiaryList().map((it) => (
+              <DiaryItem key={it.id} {...it} version={"a"} />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

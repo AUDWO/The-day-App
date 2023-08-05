@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import DiaryList from "../components/DiaryList";
 
 import Navigate from "../components/Navigate";
 
 const Home = ({ diaryList }) => {
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
   /*
   const [data, setData] = useState([]);
 
@@ -35,8 +37,18 @@ const Home = ({ diaryList }) => {
 
   return (
     <div className="Home">
-      <Navigate />
-      <DiaryList />
+      {show ? (
+        <>
+          <div className="boxboxbox"></div>
+          <Navigate />
+          <DiaryList />
+        </>
+      ) : (
+        <>
+          <Navigate />
+          <DiaryList />
+        </>
+      )}
     </div>
   );
 };

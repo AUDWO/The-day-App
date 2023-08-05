@@ -43,6 +43,7 @@ const DiaryItem = ({ id, imageSrc, title, content, type, date, version }) => {
           console.log(e.target);
           setIsOpen(!isOpen);
         }
+        e.stopPropagation(); // 이벤트 버블링 막기
       };
 
       document.addEventListener("click", handleClick);
@@ -53,7 +54,7 @@ const DiaryItem = ({ id, imageSrc, title, content, type, date, version }) => {
   }, [isOpen]);
 
   return (
-    <div className="DiaryItem " onClick={goDetailItem}>
+    <div className="DiaryItem ">
       <Thumbnail imageSrc={imageSrc} />
       <div className="category-dots" ref={areaRef}>
         <BiDotsVerticalRounded

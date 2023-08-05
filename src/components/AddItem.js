@@ -96,7 +96,7 @@ const AddItem = ({ id, itImageSrc, itTitle, itDate, itContent, itType }) => {
 
           <input
             className="input-img"
-            accept="image/"
+            accept="image/*"
             type="file"
             name="file"
             id="file"
